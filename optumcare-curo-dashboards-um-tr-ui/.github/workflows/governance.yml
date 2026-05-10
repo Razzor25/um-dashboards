@@ -1,0 +1,18 @@
+name: Netra AI Digital Governance
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  actions: read
+  security-events: write
+  id-token: write
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1-5'
+
+jobs:
+  governance-check:
+    uses: optum-ecp/ecp-actions-workflows/.github/workflows/governance-ci.yml@main
+    secrets: inherit

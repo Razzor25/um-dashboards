@@ -1,0 +1,56 @@
+name: Promote Docker Image
+run-name: Promote '${{ inputs.src-image-tag }}' image to '${{ inputs.env-name }}' with tag '${{ inputs.dest-image-tag }}'
+
+permissions:
+  actions: read
+  contents: write
+  id-token: write # This is required for requesting the JWT token for Vault access
+  pull-requests: read
+  security-events: write
+
+'on':
+  workflow_dispatch:
+    inputs:
+      env-name:
+        description: Environment to promote to
+        default: dev
+        options:
+          - dev
+          - test
+          - stage
+          - stage-um
+          - trn-bh
+          - trn
+          - prod
+        type: choice
+      src-image-tag:
+        description: Source Image Tag (usually latest-BRANCH-NAME)
+        default: latest-RB-2.x
+        type: string
+      app-name:
+        description: 'Application Name to promote for. Pattern: <repo-nam>-<app-name> core-turbo-repo-ui-console'
+        default: ''
+        type: string
+      dest-image-tag:
+        description: Destination Image Tag if left blank will default to env name
+        default: dev
+        type: string
+jobs:
+  promote-docker-image:
+    uses: optum-ecp/ecp-actions-workflows/.github/workflows/promote-docker-image.yml@main
+    with:
+      env-name: ${{ inputs.env-name }}
+      change-ticket: ''
+      src-image-name: ${{ inputs.app-name }}
+      src-image-tag: ${{ inputs.src-image-tag }}
+      create-rollback-image: false
+      dest-image-tag: ${{ inputs.dest-image-tag}}
+    secrets: inherit
+  rollout-restart-deploy:
+    needs: promote-docker-image
+    uses: optum-ecp/ecp-actions-workflows/.github/workflows/rollout-restart-deploy.yml@main
+    with:
+      app-name: ${{ inputs.app-name }}
+      namespace: core
+      env-name: ${{ inputs.env-name }}
+    secrets: inherit

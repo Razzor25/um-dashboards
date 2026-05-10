@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "noEmit": false,
+    "types": ["jest", "node", "@testing-library/jest-dom"]
+  },
+  "references": [{ "path": "./tsconfig.lib.json" }],
+  "include": ["__tests__/**/*.ts", "__tests__/**/*.tsx"]
+}

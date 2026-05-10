@@ -1,0 +1,23 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "dist",
+    "composite": true,
+    "noEmit": false,
+    "incremental": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "lib/**/*.ts",
+    "features/**/*.ts",
+    "features/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx"
+  ],
+  "exclude": ["node_modules", ".next", "dist", "build"]
+}

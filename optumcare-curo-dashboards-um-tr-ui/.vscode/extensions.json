@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "deque-systems.vscode-axe-linter",
+    "bradlc.vscode-tailwindcss",
+    "stivo.tailwind-fold",
+    "unifiedjs.vscode-mdx",
+    "yzhang.markdown-all-in-one",
+    "jebbs.markdown-extended",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "dbaeumer.vscode-eslint"
+  ]
+}

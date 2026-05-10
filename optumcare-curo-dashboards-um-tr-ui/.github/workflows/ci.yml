@@ -1,0 +1,57 @@
+name: Turbo Repo UI Build, Test, and Publish In progress
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the 'main' and 'RB-*' branches
+  pull_request:
+    branches:
+      - 'main'
+      - 'RB-**'
+      - 'FB-**'
+  push:
+    branches:
+      - 'main'
+      - 'RB-**'
+      - 'FB-**'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      app-names:
+        description: A json list of appNames [] for app directories.
+permissions:
+  actions: write
+  attestations: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: write
+  models: read
+  discussions: write
+  packages: write
+  pages: write
+  pull-requests: write
+  security-events: write
+  statuses: write
+  repository-projects: write   
+
+jobs:
+  ci-build:
+    uses: optum-ecp/ecp-actions-workflows/.github/workflows/turbo-repo-ci.yml@main
+    secrets: inherit
+    with:
+      node-version: 20
+      enable-clean-install: true
+      enable-sonar: true
+      app-names: ${{ inputs.app-names }}
+      build-script: 'build:prod'
+      jfrog-project-key: curo-um
+  rollout-restart-dev-deploy:
+    if: ${{ github.event.name != 'pull_request' && github.ref_name == 'main' }} 
+    needs: ci-build
+    uses: optum-ecp/ecp-actions-workflows/.github/workflows/rollout-restart-deploy.yml@main
+    with:
+      app-name: 'optumcare-curo-dashboards-um-tr-ui'
+      namespace: curo
+      env-name: dev-optumcare
+    secrets: inherit

@@ -1,0 +1,19 @@
+{
+  "name": "@repo/lib",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@uhg-netra-ai/common-react-components": "^2.7.11",
+    "@uhg-netra-ai/core-react-components": "^2.7.11",
+    "@uhg-netra-ai/netra-ai-icons": "^2.7.11",
+    "axios": "^1.11.0",
+    "clsx": "^2.1.1",
+    "jwt-decode": "^4.0.0",
+    "next": "^16.0.0",
+    "tailwind-merge": "^2.5.2"
+  }
+}

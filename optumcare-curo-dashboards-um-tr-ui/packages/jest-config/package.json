@@ -1,0 +1,21 @@
+{
+  "name": "@repo/jest-config",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    "./*": [
+      "./*"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/node": "^22.15.3",
+    "@uhg-netra-ai/common-react-components": "^2.7.11",
+    "@uhg-netra-ai/core-react-components": "^2.7.11",
+    "babel-jest": "^29.7.0"
+  }
+}

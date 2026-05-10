@@ -1,0 +1,14 @@
+{
+  "name": "@repo/typescript-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@uhg-netra-ai/common-react-components": "^2.7.11",
+    "@uhg-netra-ai/core-react-components": "^2.7.11",
+    "@uhg-netra-ai/netra-ai-icons": "^2.7.11"
+  }
+}
